@@ -9,6 +9,7 @@
     "bootstrap": "^4.5.0",
     "immutable": "^4.0.0-rc.12",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.2.2",
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.8",
     "react-redux": "^7.2.0",

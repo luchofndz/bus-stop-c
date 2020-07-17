@@ -1,9 +1,22 @@
 import React from 'react';
 import PaymentView from './paymentView' 
-import { CheckCircle, Smile, ThumbsUp, Feather } from 'react-feather';
+import { CheckCircle, Smile, ThumbsUp, Feather, CheckSquare } from 'react-feather';
+import { Dropdown, DropdownButton, ButtonGroup, ProgressBar } from 'react-bootstrap';
 import '../styles/dashboardMainViewStyles.css';
 
-export default function DashboardMainView() {
+export default function DashboardMainView(props) {
+  const { loading, setLoading } = props;
+  // const [age, setAge] = React.useState('');
+
+  // const handleChange = (event) => {
+  //   event.target.dropdown();
+  // };
+  console.log("loading: ", loading);
+
+  setLoading(true);
+
+  console.log("loading2: ", loading);
+  
   return (
     <div>
       <nav className="site-header sticky-top py-1">
@@ -31,20 +44,23 @@ export default function DashboardMainView() {
       <div className="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
         <div className="bg-warning mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
           <div className="my-3 py-3">
-          <h2 className="display-5">Taking action, changing lives.</h2>
+          <h2 className="display-5">Taking action, changing lives.</h2><CheckSquare size={54} color='green' />
             <p className="lead">We value all donations big and small! Every cent donated helps us to change lives and minds through #inclusivefilmmaking. Think about supporting Bus Stop Films!</p>
-            <div class="btn-group">
-              <button type="button" className="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Select your bus stop
-              </button>
-              <div className="dropdown-menu">
-                <a className="dropdown-item" href="#">Action</a>
-                <a className="dropdown-item" href="#">Another action</a>
-                <a className="dropdown-item" href="#">Something else here</a>
-                <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="#">Separated link</a>
-              </div>
-            </div>
+            <DropdownButton
+              as={ButtonGroup}
+              key={'Secondary'}
+              id={`dropdown-variants-Secondary`}
+              variant={'secondary'}
+              title={'Bus Stop'}
+            >
+              <Dropdown.Item eventKey="1">Bus Stop A</Dropdown.Item>
+              <Dropdown.Item eventKey="2">Bus Stop B</Dropdown.Item>
+              <Dropdown.Item eventKey="3" active>
+                Bus Stop C 
+              </Dropdown.Item>
+              <Dropdown.Divider />
+              <Dropdown.Item eventKey="4">Bus Stop D</Dropdown.Item>
+            </DropdownButton>
             <PaymentView />   
           </div>
         </div>
@@ -53,6 +69,18 @@ export default function DashboardMainView() {
             <h2 className="display-5">How your money helps</h2>
             <Smile size={54} color='green' />
             <p className="lead">We generate about 70% of our operational costs through our program fees, which students pay through their NDIS packages and undertake fundraising to produce our films. As a not-for-profit, we also rely on the kind donations we receive from our supporters, all of which are put towards supporting the education of our students. All donations are tax deductible.</p>
+            <div>
+              <ProgressBar striped variant="success" now={40} />
+              <p className="text-uppercase">Bus Stop A</p>
+              <ProgressBar striped variant="success" now={70} />
+              <p className="text-uppercase">Bus Stop B</p>
+              <ProgressBar striped variant="success" now={40} />
+              <p className="text-uppercase">Bus Stop C</p>
+              <ProgressBar striped variant="success" now={20} />
+              <p className="text-uppercase">Bus Stop D</p>
+              <ProgressBar striped variant="success" now={80} />
+              <p className="text-uppercase">Bus Stop E</p>
+            </div>
           </div>
         </div>
       </div>
