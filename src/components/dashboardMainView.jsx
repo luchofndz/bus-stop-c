@@ -34,18 +34,51 @@ export default function DashboardMainView(props) {
         </div>
       </nav>
 
-      <div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light header__background-image-main" >
+     
+      <div className="position-relative overflow-hidden text-center bg-light header__background-image-secondary" >
+        <div className="col-md-5 p-lg-5 mx-auto my-5 d-flex">
+          <h1 className="display-4 font-weight-bold">Donate</h1>
+          <CheckCircle size={54} color='green' />
+        </div>
+      </div>
+
+      <div className="d-md-flex flex-md-equal w-100">
+        <div className="bg-warning p-6 text-center overflow-hidden">
+          <div className="my-3 p-3">
+            <h2 className="display-5">How your money helps</h2>
+            <Smile size={54} color='green' />
+            <p className="lead">As a not-for-profit, we rely on the kind donations we receive from our supporters, all of which are put towards supporting the bus stops for users. All donations are tax deductible.</p>
+            <div>
+              <ProgressBar striped variant="success" now={40} />
+              <p className="text-uppercase">Bus Stop A</p>
+              <ProgressBar striped variant="success" now={70} />
+              <p className="text-uppercase">Bus Stop B</p>
+              <ProgressBar striped variant="success" now={40} />
+              <p className="text-uppercase">Bus Stop C</p>
+              <ProgressBar striped variant="success" now={20} />
+              <p className="text-uppercase">Bus Stop D</p>
+              <ProgressBar striped variant="success" now={80} />
+              <p className="text-uppercase">Bus Stop E</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="position-relative overflow-hidden text-center bg-light header__background-image-main" >
         <div className="col-md-5 p-lg-5 mx-auto my-5">
           <h1 className="display-4 font-weight-bold">Donate</h1>
           <CheckCircle size={54} color='green' />
         </div>
       </div>
 
-      <div className="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-        <div className="bg-warning mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+      <div className="d-md-flex flex-md-equal w-100">
+        <div className="bg-secondary p-6 text-center text-white overflow-hidden">
           <div className="my-3 py-3">
-          <h2 className="display-5">Taking action, changing lives.</h2><CheckSquare size={54} color='green' />
-            <p className="lead">We value all donations big and small! Every cent donated helps us to change lives and minds through #inclusivefilmmaking. Think about supporting Bus Stop Films!</p>
+            <div className="d-flex justify-content-center">
+              <h2 className="display-5 pr-3">Taking action, changing lives.</h2>
+              <CheckSquare size={54} color='green' />
+            </div>
+            <p className="lead">We value all donations big and small! Every cent donated helps us to change lives. Think about supporting Bus Stop!</p>
             <DropdownButton
               as={ButtonGroup}
               key={'Secondary'}
@@ -64,31 +97,9 @@ export default function DashboardMainView(props) {
             <PaymentView />   
           </div>
         </div>
-        <div className="bg-secondary mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-          <div className="my-3 p-3">
-            <h2 className="display-5">How your money helps</h2>
-            <Smile size={54} color='green' />
-            <p className="lead">We generate about 70% of our operational costs through our program fees, which students pay through their NDIS packages and undertake fundraising to produce our films. As a not-for-profit, we also rely on the kind donations we receive from our supporters, all of which are put towards supporting the education of our students. All donations are tax deductible.</p>
-            <div>
-              <ProgressBar striped variant="success" now={40} />
-              <p className="text-uppercase">Bus Stop A</p>
-              <ProgressBar striped variant="success" now={70} />
-              <p className="text-uppercase">Bus Stop B</p>
-              <ProgressBar striped variant="success" now={40} />
-              <p className="text-uppercase">Bus Stop C</p>
-              <ProgressBar striped variant="success" now={20} />
-              <p className="text-uppercase">Bus Stop D</p>
-              <ProgressBar striped variant="success" now={80} />
-              <p className="text-uppercase">Bus Stop E</p>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light header__background-image-secondary" >
-        <div className="col-md-5 p-lg-5 mx-auto my-5">
-        </div>
-      </div>
+      
 
       <footer className="container py-5">
         <div className="row">
