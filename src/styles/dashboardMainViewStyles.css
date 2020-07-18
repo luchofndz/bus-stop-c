@@ -65,4 +65,24 @@
     background-size: 100%;
     min-height: 500px;
   }
+  .body__desktopImage {
+    height: 100%;
+    width: 100%;
+  }
+  .body__donate-absolute-container {
+    position: absolute;
+    left: 20px;
+    top: 60px;
+  }
+  .body__donate-absolute-container-centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .body__title {
+    margin-right: 10px;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+  }
   
