@@ -1,7 +1,13 @@
 import React from 'react';
 import PaymentView from './paymentView' 
 import { CheckCircle, Smile, ThumbsUp, Feather, CheckSquare } from 'react-feather';
-import { Dropdown, DropdownButton, ButtonGroup, ProgressBar } from 'react-bootstrap';
+import { 
+  Dropdown, 
+  DropdownButton, 
+  ButtonGroup, 
+  ProgressBar,
+  Image
+} from 'react-bootstrap';
 import '../styles/dashboardMainViewStyles.css';
 
 export default function DashboardMainView(props) {
@@ -36,12 +42,14 @@ export default function DashboardMainView(props) {
       </nav>
 
      
-      <div className="position-relative overflow-hidden text-center bg-light header__background-image-secondary" >
+      {/* <div className="position-relative overflow-hidden text-center bg-light header__background-image-secondary" >
         <div className="col-md-5 p-lg-5 mx-auto my-5 d-flex">
           <h1 className="display-4 font-weight-bold">Donate</h1>
           <CheckCircle size={54} color='green' />
         </div>
-      </div>
+        <img src='../' class="img-fluid" alt="Responsive image"></img>
+      </div> */}
+      <Image src="../assests/images/busStopMainDesktop.jpg" fluid />
 
       <div className="d-md-flex flex-md-equal w-100">
         <div className="bg-warning p-6 text-center overflow-hidden">
