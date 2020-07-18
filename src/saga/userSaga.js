@@ -5,12 +5,9 @@ import * as busStopActionTypes from '../actions/types/busActionsTypes';
 
 function* getAllBusStop() {
   try {
-    console.log("HERE");
     const info = yield call(Api.busStops.getAllBusStops);
-
     console.log("info", info);
   } catch (err) {
-    console.log("here2");
     console.log(err);
   }
 }
