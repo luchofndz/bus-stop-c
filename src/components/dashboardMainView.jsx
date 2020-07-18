@@ -5,7 +5,7 @@ import { Dropdown, DropdownButton, ButtonGroup, ProgressBar } from 'react-bootst
 import '../styles/dashboardMainViewStyles.css';
 
 export default function DashboardMainView(props) {
-  const { loading, setLoading } = props;
+  const { loading, setLoading, getBusStops } = props;
   // const [age, setAge] = React.useState('');
 
   // const handleChange = (event) => {
@@ -14,6 +14,7 @@ export default function DashboardMainView(props) {
   console.log("loading: ", loading);
 
   setLoading(true);
+  getBusStops();
 
   console.log("loading2: ", loading);
   
