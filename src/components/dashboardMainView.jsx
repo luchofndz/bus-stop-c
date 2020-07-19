@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import PaymentView from './paymentView' 
+import React, { useEffect, useState } from 'react';
+import PaymentView from './paymentView'
 import { CheckCircle, Smile, ThumbsUp, Feather, CheckSquare } from 'react-feather';
-import { 
-  Dropdown, 
-  DropdownButton, 
-  ButtonGroup, 
+import {
+  Dropdown,
+  DropdownButton,
+  ButtonGroup,
   ProgressBar,
   Image
 } from 'react-bootstrap';
@@ -13,36 +13,27 @@ import desktopPrimaryImage from '../assests/images/busStopMainDesktop.jpg';
 import desktopSecondaryImage from '../assests/images/childrenBusStopDesktop.jpg';
 
 export default function DashboardMainView(props) {
-  const { loading, setLoading, getBusStopsSaga, busStops, isLoadingBusStops } = props;
-  // const [age, setAge] = React.useState('');
+  const { 
+    loading, 
+    setLoading, 
+    getBusStopsSaga, 
+    busStops, 
+    isLoadingBusStops,
+    setUserDonation
+  } = props;
+  const [busStopSelected, selectBusStop] = useState('');
 
-  // const handleChange = (event) => {
-  //   event.target.dropdown();
-  // };
+  const handleBusStopSelection = (value) => {
+    selectBusStop(value);
+  };
 
   useEffect( () => {
     getBusStopsSaga();
-  })
+  }, []);
 
-  console.log("state", isLoadingBusStops);
-  console.log("asasa", busStops);
+  console.log("props", props);
+  console.log("state1", busStopSelected);
 
-  const renderProgressBars = () => {
-    if (busStops) {
-      const obj = JSON.parse(busStops);
-      console.log("sd", obj);
-
-      busStops.busStops.map((item, index) => {
-        return (
-          <div>
-            <ProgressBar striped variant="success" now={40} />
-              <p className="text-uppercase">Bus Stop {item.name}</p>
-          </div>
-        );
-      })
-    }
-  }
-  
   return (
     <div>
       <nav className="site-header sticky-top py-1">
@@ -81,21 +72,36 @@ export default function DashboardMainView(props) {
               <div className="d-flex justify-content-center align-items-center">
                 <h2 className="body__title">How your money helps</h2>
                 <Smile size={54} color='green' />
-              </div> 
-              <p className="lead">As a not-for-profit, we rely on the kind donations we receive from our supporters, all of which are put towards supporting the bus stops for users. All donations are tax deductible.</p>
-              {renderProgressBars()}
+              </div>
+              <p className="lead">As a non-profit organization, we rely on the kind donations we receive from 
+                our supporters, all of which are put towards supporting the bus stops for users. 
+                All donations are tax deductible. Objective is raise $700 for each bus stop.</p>
+              <p className="text-uppercase dashboard__pregress-subtitle">Bus Stops</p>
               <div>
-
-                <ProgressBar striped variant="success" now={40} />
-                <p className="text-uppercase">Bus Stop A</p>
-                <ProgressBar striped variant="success" now={70} />
-                <p className="text-uppercase">Bus Stop B</p>
-                <ProgressBar striped variant="success" now={40} />
-                <p className="text-uppercase">Bus Stop C</p>
-                <ProgressBar striped variant="success" now={20} />
-                <p className="text-uppercase">Bus Stop D</p>
-                <ProgressBar striped variant="success" now={80} />
-                <p className="text-uppercase">Bus Stop E</p>
+                {busStops && 
+                  busStops.busStops.map((item, index) => {
+                    const percentil = Math.round((item.amount*100) / 700);
+                    return (
+                      <div key={index}>
+                        <div className="body__progressbar-container">
+                          <ProgressBar 
+                            className="dashboard__progressbar"
+                            striped 
+                            variant="success" 
+                            now={percentil} 
+                            min={0} 
+                            max={100} 
+                            label={`${percentil}%`}
+                          />
+                          <div className="dashboard__progressbar-bus-text-circle">
+                            <p className="text-uppercase dashboard__progressbar-bus-text">{item.name}</p>
+                          </div>
+                        </div>
+                        <p className="text-capitalized dashboard__last-donation-text">Last donation: ${item.lastAmount} / Total received: ${item.amount}</p>
+                      </div>
+                    );
+                  })
+                }
               </div>
             </div>
           </div>
@@ -118,27 +124,38 @@ export default function DashboardMainView(props) {
               <CheckSquare size={70} color='green' />
             </div>
             <p className="lead">We value all donations big and small! Every cent donated helps us to change lives. Think about supporting Bus Stop!</p>
-            <DropdownButton
-              as={ButtonGroup}
-              key={'Secondary'}
-              id={`dropdown-variants-Secondary`}
-              variant={'secondary'}
-              title={'Bus Stop'}
-            >
-              <Dropdown.Item eventKey="1">Bus Stop A</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Bus Stop B</Dropdown.Item>
-              <Dropdown.Item eventKey="3" active>
-                Bus Stop C 
-              </Dropdown.Item>
-              <Dropdown.Divider />
-              <Dropdown.Item eventKey="4">Bus Stop D</Dropdown.Item>
-            </DropdownButton>
-            <PaymentView />   
+            <p className="lead">Select a bus stop to which you would like to donate</p>
+            {isLoadingBusStops ?
+              <div className="text-center">
+                <div className="spinner-border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+              </div>
+              :
+              <div>
+                <DropdownButton
+                  as={ButtonGroup}
+                  key={'Info'}
+                  id={'dropdown-variants-Info'}
+                  variant={'info'}
+                  title={'Bus Stop'}
+                  onSelect={handleBusStopSelection}
+                >
+                  {busStops ?
+                    busStops.busStops.map((item, index) => {
+                      return (
+                      <Dropdown.Item eventKey={`${index}`}>Bus Stop {item.name.toUpperCase()}</Dropdown.Item>
+                      );
+                    })
+                    : <Dropdown.Item eventKey="1"> Not available yet </Dropdown.Item>
+                  }
+                </DropdownButton>
+                <PaymentView busStop={busStopSelected} userDonationFunction={setUserDonation}/>
+              </div>
+            }
           </div>
         </div>
       </div>
-
-      
 
       <footer className="container py-5">
         <div className="row">

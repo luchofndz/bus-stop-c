@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import StripeCheckout from "react-stripe-checkout";
-// import axios from "axios";
-// import { toast } from "react-toastify";
-// toast.configure();
+import '../styles/paymentViewStyles.css';
+import {
+  Form
+} from 'react-bootstrap';
 
-export default function PaymentView() {
-  const [product] = React.useState({
-    name: "Bus Stop C",
-    price: 64998.67,
-    description: "Cool car"
+export default function PaymentView(props) {
+  const { busStop = 0, userDonationFunction } = props;
+  const textInput = createRef();
+  const busStopName = "Bus Stop Donation";
+  let price = 700;
+  if (textInput.current !== null) {
+    price = textInput.current.value;
+  }
+  const [selectedData] = React.useState({
+    name: busStopName,
+    price: price,
+    description: "Please complete fields"
   });
 
   async function handleToken(token, addresses) {
+    console.log("a:", token, addresses);
+    const object =  {
+      email: token.email,
+      // name: token.card.name,
+      // amount: selectedData.price,
+      // busStop: busStop
+    };
+    userDonationFunction(object);
     // const response = await axios.post(
     //   "https://ry7v05l6on.sse.codesandbox.io/checkout",
     //   { token, product }
@@ -25,14 +41,24 @@ export default function PaymentView() {
     // }
   }
 
+  const handleChangeInput = () => {
+    console.log("Input value: ", textInput.current.value);
+  }
+
   return (
     <div>
+      <Form className="payment__form-container">
+        <Form.Control placeholder="Insert an amount"
+          ref={textInput}
+          onChange={handleChangeInput}
+        />
+      </Form>
       <StripeCheckout
         stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
         token={handleToken}
-        amount={product.price * 100}
-        name="Bus stop donation"
-        description="Big Data Stuff"
+        amount={selectedData.price * 100}
+        name={selectedData.name}
+        description={selectedData.description}
         billingAddress
         currency="USD"
       />

@@ -3,14 +3,26 @@
     "busStops": [
         {
             "name": "a",
-            "amount": 50
+            "amount": 50,
+            "lastAmount": 30
         },
         {
             "name": "b",
-            "amount": 100
+            "amount": 300,
+            "lastAmount": 40
         },
         {   "name": "c", 
-            "amount": 150
+            "amount": 150,
+            "lastAmount": 70
+        },
+        {
+            "name": "d",
+            "amount": 400,
+            "lastAmount": 230
+        },
+        {   "name": "e", 
+            "amount": 450,
+            "lastAmount": 30
         }
     ],
     "string": "Hello World"

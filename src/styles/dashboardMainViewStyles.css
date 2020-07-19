@@ -53,18 +53,6 @@
     }
   }
   .overflow-hidden { overflow: hidden; }
-  /* .header__background-image-main {
-    background-image: url('../assests/images/busStopMainView.jpg');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    min-height: 500px;
-  }
-  .header__background-image-secondary {
-    background-image: url('../assests/images/childrenBusStop.jpg');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    min-height: 500px;
-  } */
   .body__desktopImage {
     height: 100%;
     width: 100%;
@@ -88,5 +76,42 @@
   }
   .body__money-box-conatiner {
     padding: 40px 110px 40px 100px;
+  }
+  .body__progressbar-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  .dashboard__last-donation-text {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+  }
+  .dashboard__progressbar {
+    width: 100%;
+    margin-right: 10px;
+  }
+  .dashboard__progressbar-bus-text {
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 0px;
+    color: white;
+  }
+  .dashboard__progressbar-bus-text-circle {
+    background-color: green;
+    padding: 6px 12px 6px 12px;
+    border-radius: 20px;
+  }
+  .dashboard__pregress-subtitle {
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    text-align: center;
   }
   
