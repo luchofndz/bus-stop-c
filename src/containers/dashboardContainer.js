@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import DashboardMainView from '../components/dashboardMainView';
 import { setLoading } from '../actions/userActions';
 import { getAllBusStopsAction } from '../actions/busStopActions';
-import { getLoading, getIfLoadingBusStops, getbusStops } from '../selectors/userSelectors';
+import { getLoading } from '../selectors/userSelectors';
+import { getIfLoadingBusStops, getbusStops } from '../selectors/busStopSelectors';
 
 const mapStateToProps = (state) => ({
   loading: getLoading(state),
@@ -15,7 +16,7 @@ const mapDispatchToProps = dispatch => {
     setLoading: value => {
       dispatch(setLoading(value));
     },
-    getBusStops: () => {
+    getBusStopsSaga: () => {
       dispatch(getAllBusStopsAction());
     }
   };

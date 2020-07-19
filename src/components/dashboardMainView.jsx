@@ -13,24 +13,24 @@ import desktopPrimaryImage from '../assests/images/busStopMainDesktop.jpg';
 import desktopSecondaryImage from '../assests/images/childrenBusStopDesktop.jpg';
 
 export default function DashboardMainView(props) {
-  const { loading, setLoading, getBusStops, busStops, isLoadingBusStops } = props;
+  const { loading, setLoading, getBusStopsSaga, busStops, isLoadingBusStops } = props;
   // const [age, setAge] = React.useState('');
 
   // const handleChange = (event) => {
   //   event.target.dropdown();
   // };
-  console.log("loading: ", loading);
 
-  setLoading(true);
   useEffect( () => {
-    getBusStops();
+    getBusStopsSaga();
   })
 
-  console.log("loading2: ", loading);
+  console.log("state", isLoadingBusStops);
+  console.log("asasa", busStops);
 
   const renderProgressBars = () => {
     if (busStops) {
-      console.log("sd", busStops);
+      const obj = JSON.parse(busStops);
+      console.log("sd", obj);
 
       busStops.busStops.map((item, index) => {
         return (
@@ -83,7 +83,7 @@ export default function DashboardMainView(props) {
                 <Smile size={54} color='green' />
               </div> 
               <p className="lead">As a not-for-profit, we rely on the kind donations we receive from our supporters, all of which are put towards supporting the bus stops for users. All donations are tax deductible.</p>
-              {renderProgressBars}
+              {renderProgressBars()}
               <div>
 
                 <ProgressBar striped variant="success" now={40} />

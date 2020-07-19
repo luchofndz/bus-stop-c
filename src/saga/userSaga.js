@@ -7,9 +7,7 @@ function* getAllBusStop() {
   try {
     yield put(busStopActions.setLoadingBusStops(true));
     const data = yield call(Api.busStops.getAllBusStops);
-    if (data) {
-        busStopActions.setBusStopsAction(data);
-    }
+    yield put(busStopActions.setBusStopsAction(data));
     console.log("info", data);
     yield put(busStopActions.setLoadingBusStops(false));
   } catch (err) {
