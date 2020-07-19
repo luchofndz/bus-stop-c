@@ -1,26 +1,27 @@
 import { connect } from 'react-redux';
 import DashboardMainView from '../components/dashboardMainView';
-import { setLoading, setDonation } from '../actions/userActions';
-import { getAllBusStopsAction } from '../actions/busStopActions';
-import { getLoading } from '../selectors/userSelectors';
+import { setDonation } from '../actions/userActions';
+import { getAllBusStopsAction} from '../actions/busStopActions';
+import { getLoading, getErrorDonation, getSuccessDonation } from '../selectors/userSelectors';
 import { 
   getIfLoadingBusStops, 
   getbusStops, 
-  getErrorGettingBusStop
+  getErrorGettingBusStop,
+  getSuccessGetBusStops
 } from '../selectors/busStopSelectors';
 
 const mapStateToProps = (state) => ({
   loading: getLoading(state),
   isLoadingBusStops: getIfLoadingBusStops(state),
   busStops: getbusStops(state),
-  getBusStopError: getErrorGettingBusStop(state)
+  getBusStopError: getErrorGettingBusStop(state),
+  successGetBusStops: getSuccessGetBusStops(state),
+  donationError: getErrorDonation(state),
+  donationSuccess: getSuccessDonation(state)
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    setLoading: value => {
-      dispatch(setLoading(value));
-    },
     setUserDonation: value => {
       dispatch(setDonation(value));
     },

@@ -4,7 +4,8 @@ import * as t from '../actions/types/busActionsTypes';
 const initialState = Map({
   busStops: null,
   isLoadingBusStops: false,
-  errorGettingBusStop: null
+  errorGettingBusStop: null,
+  successGetBusStops: false,
 });
 
 const busStops = function(state = initialState, action) {
@@ -18,6 +19,9 @@ const busStops = function(state = initialState, action) {
     case t.SET_ERROR_GET_BUS_STOPS:
       return state.set('errorGettingBusStop', action.value);
 
+    case t.SET_SUCCESS_GET_BUS_STOPS:
+      return state.set('successGetBusStops', action.value);
+      
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React, { useState, createRef } from 'react';
 import StripeCheckout from "react-stripe-checkout";
 import '../styles/paymentViewStyles.css';
 import {
@@ -8,14 +8,9 @@ import {
 export default function PaymentView(props) {
   const { busStop = 0, userDonationFunction } = props;
   const textInput = createRef();
-  const busStopName = "Bus Stop Donation";
-  let price = 700;
-  if (textInput.current !== null) {
-    price = textInput.current.value;
-  }
-  const [selectedData] = React.useState({
-    name: busStopName,
-    price: price,
+  const [selectedData, setSelectedData] = useState({
+    name: "Bus Stop Donation",
+    price: 700,
     description: "Please complete fields"
   });
 
@@ -23,17 +18,14 @@ export default function PaymentView(props) {
     console.log("a:", token, addresses);
     const object =  {
       email: token.email,
-      // name: token.card.name,
-      // amount: selectedData.price,
-      // busStop: busStop
+      amount: selectedData.price,
+      busStop: 3,
+      name: token.card.name,
+      busStop: busStop
     };
+    console.log("obje", object);
     userDonationFunction(object);
-    // const response = await axios.post(
-    //   "https://ry7v05l6on.sse.codesandbox.io/checkout",
-    //   { token, product }
-    // );
-    // const { status } = response.data;
-    // console.log("Response:", response.data);
+
     // if (status === "success") {
     //   toast("Success! Check email for details", { type: "success" });
     // } else {
@@ -43,6 +35,11 @@ export default function PaymentView(props) {
 
   const handleChangeInput = () => {
     console.log("Input value: ", textInput.current.value);
+    setSelectedData({
+      ...selectedData,
+      price: textInput.current.value
+    });
+    console.log("handleChange:", selectedData);
   }
 
   return (

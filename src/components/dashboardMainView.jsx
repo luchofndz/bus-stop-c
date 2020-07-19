@@ -14,8 +14,7 @@ import desktopSecondaryImage from '../assests/images/childrenBusStopDesktop.jpg'
 
 export default function DashboardMainView(props) {
   const { 
-    loading, 
-    setLoading, 
+    loading,
     getBusStopsSaga, 
     busStops, 
     isLoadingBusStops,
@@ -33,6 +32,10 @@ export default function DashboardMainView(props) {
 
   console.log("props", props);
   console.log("state1", busStopSelected);
+  if (busStops){
+    console.log("alf", busStops.busStops[2].amount);
+  }
+  
 
   return (
     <div>
@@ -144,10 +147,10 @@ export default function DashboardMainView(props) {
                   {busStops ?
                     busStops.busStops.map((item, index) => {
                       return (
-                      <Dropdown.Item eventKey={`${index}`}>Bus Stop {item.name.toUpperCase()}</Dropdown.Item>
+                      <Dropdown.Item key={`${index}`} eventKey={`${index}`}>Bus Stop {item.name.toUpperCase()}</Dropdown.Item>
                       );
                     })
-                    : <Dropdown.Item eventKey="1"> Not available yet </Dropdown.Item>
+                    : <Dropdown.Item key={"0"} eventKey="1"> Not available yet </Dropdown.Item>
                   }
                 </DropdownButton>
                 <PaymentView busStop={busStopSelected} userDonationFunction={setUserDonation}/>
