@@ -53,7 +53,7 @@
     }
   }
   .overflow-hidden { overflow: hidden; }
-  .header__background-image-main {
+  /* .header__background-image-main {
     background-image: url('../assests/images/busStopMainView.jpg');
     background-repeat: no-repeat;
     background-size: 100%;
@@ -64,5 +64,29 @@
     background-repeat: no-repeat;
     background-size: 100%;
     min-height: 500px;
+  } */
+  .body__desktopImage {
+    height: 100%;
+    width: 100%;
+  }
+  .body__donate-absolute-container {
+    position: absolute;
+    left: 20px;
+    top: 60px;
+  }
+  .body__donate-absolute-container-centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .body__title {
+    margin-right: 10px;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+  }
+  .body__money-box-conatiner {
+    padding: 40px 110px 40px 100px;
   }
   
