@@ -3,12 +3,13 @@ import DashboardMainView from '../components/dashboardMainView';
 import { setLoading } from '../actions/userActions';
 import { getAllBusStopsAction } from '../actions/busStopActions';
 import { getLoading } from '../selectors/userSelectors';
-import { getIfLoadingBusStops, getbusStops } from '../selectors/busStopSelectors';
+import { getIfLoadingBusStops, getbusStops, getErrorGettingBusStop } from '../selectors/busStopSelectors';
 
 const mapStateToProps = (state) => ({
   loading: getLoading(state),
   isLoadingBusStops: getIfLoadingBusStops(state),
-  busStops: getbusStops(state)
+  busStops: getbusStops(state),
+  getBusStopError: getErrorGettingBusStop(state)
 });
 
 const mapDispatchToProps = dispatch => {

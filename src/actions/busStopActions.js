@@ -15,3 +15,8 @@ export const setLoadingBusStops = (value) => ({
     type: type.SET_LOADING_BUS_STOPS,
     value
 });
+
+export const setGetBusStopError = (value) => ({
+    type: type.SET_ERROR_GET_BUS_STOPS,
+    value
+});

@@ -12,6 +12,7 @@ function* getAllBusStop() {
     yield put(busStopActions.setLoadingBusStops(false));
   } catch (err) {
     console.log(err);
+    yield put(busStopActions.setGetBusStopError(err));
     yield put(busStopActions.setLoadingBusStops(false));
   }
 }

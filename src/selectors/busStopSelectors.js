@@ -9,4 +9,4 @@ const getStateWithOnlyOneLevel = (state, levelOne) => {
   // BUS STOP SELECTORS
   export const getbusStops = (state) => getState(state).get('busStops');
   export const getIfLoadingBusStops = (state) => getState(state).get('isLoadingBusStops');
-  
+  export const getErrorGettingBusStop = (state) => getState(state).get('errorGettingBusStop');

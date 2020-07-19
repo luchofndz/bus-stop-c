@@ -80,5 +80,38 @@
   .body__progressbar-container {
     width: 100%;
     display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  .dashboard__last-donation-text {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+  }
+  .dashboard__progressbar {
+    width: 100%;
+    margin-right: 10px;
+  }
+  .dashboard__progressbar-bus-text {
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 0px;
+    color: white;
+  }
+  .dashboard__progressbar-bus-text-circle {
+    background-color: green;
+    padding: 6px 12px 6px 12px;
+    border-radius: 20px;
+  }
+  .dashboard__pregress-subtitle {
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    text-align: center;
   }
   
