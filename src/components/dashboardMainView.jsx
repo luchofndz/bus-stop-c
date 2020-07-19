@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PaymentView from './paymentView' 
 import { CheckCircle, Smile, ThumbsUp, Feather, CheckSquare } from 'react-feather';
 import { 
@@ -11,11 +11,9 @@ import {
 import '../styles/dashboardMainViewStyles.css';
 import desktopPrimaryImage from '../assests/images/busStopMainDesktop.jpg';
 import desktopSecondaryImage from '../assests/images/childrenBusStopDesktop.jpg';
-import mobilePrimaryImage from '../assests/images/busStopMainView.jpg';
-import mobileSecondaryImage from '../assests/images/childrenBusStop.jpg';
 
 export default function DashboardMainView(props) {
-  const { loading, setLoading, getBusStops } = props;
+  const { loading, setLoading, getBusStops, busStops, isLoadingBusStops } = props;
   // const [age, setAge] = React.useState('');
 
   // const handleChange = (event) => {
@@ -24,9 +22,26 @@ export default function DashboardMainView(props) {
   console.log("loading: ", loading);
 
   setLoading(true);
-  getBusStops();
+  useEffect( () => {
+    getBusStops();
+  })
 
   console.log("loading2: ", loading);
+
+  const renderProgressBars = () => {
+    if (busStops) {
+      console.log("sd", busStops);
+
+      busStops.busStops.map((item, index) => {
+        return (
+          <div>
+            <ProgressBar striped variant="success" now={40} />
+              <p className="text-uppercase">Bus Stop {item.name}</p>
+          </div>
+        );
+      })
+    }
+  }
   
   return (
     <div>
@@ -54,27 +69,37 @@ export default function DashboardMainView(props) {
       </div>
 
       <div className="d-md-flex flex-md-equal w-100">
-        <div className="bg-warning p-6 text-center overflow-hidden">
-          <div className="my-3 p-3">
-            <div className="d-flex justify-content-center align-items-center">
-              <h2 className="body__title">How your money helps</h2>
-              <Smile size={54} color='green' />
-            </div> 
-            <p className="lead">As a not-for-profit, we rely on the kind donations we receive from our supporters, all of which are put towards supporting the bus stops for users. All donations are tax deductible.</p>
-            <div>
-              <ProgressBar striped variant="success" now={40} />
-              <p className="text-uppercase">Bus Stop A</p>
-              <ProgressBar striped variant="success" now={70} />
-              <p className="text-uppercase">Bus Stop B</p>
-              <ProgressBar striped variant="success" now={40} />
-              <p className="text-uppercase">Bus Stop C</p>
-              <ProgressBar striped variant="success" now={20} />
-              <p className="text-uppercase">Bus Stop D</p>
-              <ProgressBar striped variant="success" now={80} />
-              <p className="text-uppercase">Bus Stop E</p>
+        {isLoadingBusStops ?
+          <div className="text-center">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
             </div>
           </div>
-        </div>
+          :
+          <div className="bg-warning text-center overflow-hidden body__money-box-conatiner">
+            <div className="my-3 p-3">
+              <div className="d-flex justify-content-center align-items-center">
+                <h2 className="body__title">How your money helps</h2>
+                <Smile size={54} color='green' />
+              </div> 
+              <p className="lead">As a not-for-profit, we rely on the kind donations we receive from our supporters, all of which are put towards supporting the bus stops for users. All donations are tax deductible.</p>
+              {renderProgressBars}
+              <div>
+
+                <ProgressBar striped variant="success" now={40} />
+                <p className="text-uppercase">Bus Stop A</p>
+                <ProgressBar striped variant="success" now={70} />
+                <p className="text-uppercase">Bus Stop B</p>
+                <ProgressBar striped variant="success" now={40} />
+                <p className="text-uppercase">Bus Stop C</p>
+                <ProgressBar striped variant="success" now={20} />
+                <p className="text-uppercase">Bus Stop D</p>
+                <ProgressBar striped variant="success" now={80} />
+                <p className="text-uppercase">Bus Stop E</p>
+              </div>
+            </div>
+          </div>
+        }
       </div>
 
       <div className="position-relative text-center">
@@ -89,7 +114,7 @@ export default function DashboardMainView(props) {
         <div className="bg-secondary p-6 text-center text-white overflow-hidden">
           <div className="my-3 py-3">
             <div className="d-flex justify-content-center align-items-center">
-              <h2 className="display-5 pr-3">Taking action, changing lives.</h2>
+              <h2 className="body__title">Taking action, changing lives.</h2>
               <CheckSquare size={70} color='green' />
             </div>
             <p className="lead">We value all donations big and small! Every cent donated helps us to change lives. Think about supporting Bus Stop!</p>

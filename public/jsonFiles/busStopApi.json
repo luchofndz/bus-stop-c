@@ -1,11 +1,17 @@
 {
-    "boolean": true,
-    "color": "gold",
-    "null": null,
-    "number": 123,
-    "object": {
-      "a": "b",
-      "c": "d"
-    },
+    "objectiveTarget": 700,
+    "busStops": [
+        {
+            "name": "a",
+            "amount": 50
+        },
+        {
+            "name": "b",
+            "amount": 100
+        },
+        {   "name": "c", 
+            "amount": 150
+        }
+    ],
     "string": "Hello World"
 }
