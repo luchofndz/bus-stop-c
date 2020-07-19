@@ -23,6 +23,9 @@ export default function PaymentView(props) {
     console.log("a:", token, addresses);
     const object =  {
       email: token.email,
+      name: "enrique",
+      amount: 700,
+      busStop: 3
       // name: token.card.name,
       // amount: selectedData.price,
       // busStop: busStop

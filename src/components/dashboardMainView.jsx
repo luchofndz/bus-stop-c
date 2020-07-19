@@ -28,11 +28,20 @@ export default function DashboardMainView(props) {
   };
 
   useEffect( () => {
+    // if (localStorage.getItem(localStorageKey)) {
+
+    // } else {
+    //   getBusStopsSaga();
+    // }
     getBusStopsSaga();
   }, []);
 
   console.log("props", props);
   console.log("state1", busStopSelected);
+  if (busStops){
+    console.log("alf", busStops.busStops[2].amount);
+  }
+  
 
   return (
     <div>

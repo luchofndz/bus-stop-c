@@ -4,26 +4,35 @@
         {
             "name": "a",
             "amount": 50,
-            "lastAmount": 30
+            "lastAmount": 30,
+            "lastDonatorName": "",
+            "lastDonatorEmail": ""
         },
         {
             "name": "b",
             "amount": 300,
-            "lastAmount": 40
+            "lastAmount": 40,
+            "lastDonatorName": "",
+            "lastDonatorEmail": ""
         },
         {   "name": "c", 
             "amount": 150,
-            "lastAmount": 70
+            "lastAmount": 70,
+            "lastDonatorName": "",
+            "lastDonatorEmail": ""
         },
         {
             "name": "d",
             "amount": 400,
-            "lastAmount": 230
+            "lastAmount": 230,
+            "lastDonatorName": "",
+            "lastDonatorEmail": ""
         },
         {   "name": "e", 
             "amount": 450,
-            "lastAmount": 30
+            "lastAmount": 30,
+            "lastDonatorName": "",
+            "lastDonatorEmail": ""
         }
-    ],
-    "string": "Hello World"
+    ]
 }
