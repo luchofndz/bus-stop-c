@@ -14,8 +14,7 @@ import desktopSecondaryImage from '../assests/images/childrenBusStopDesktop.jpg'
 
 export default function DashboardMainView(props) {
   const { 
-    loading, 
-    setLoading, 
+    loading,
     getBusStopsSaga, 
     busStops, 
     isLoadingBusStops,

@@ -20,3 +20,8 @@ export const setGetBusStopError = (value) => ({
     type: type.SET_ERROR_GET_BUS_STOPS,
     value
 });
+
+export const setSuccessGetBusStop = (value) => ({
+    type: type.SET_SUCCESS_GET_BUS_STOPS,
+    value
+});

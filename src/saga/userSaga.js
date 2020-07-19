@@ -8,8 +8,10 @@ import * as userActionTypes from '../actions/types/userActionsTypes';
 function* getAllBusStop() {
   try {
     yield put(busStopActions.setLoadingBusStops(true));
+    yield put(busStopActions.setSuccessGetBusStop(false));
     const data = yield call(Api.busStops.getAllBusStops);
 
+    // If exist in local storage just use it
     if (localStorage.getItem('busStopStorage27')) {
       let localData = localStorage.getItem('busStopStorage27');
       localData = JSON.parse(localData);
@@ -19,15 +21,14 @@ function* getAllBusStop() {
       localStorage.setItem('busStopStorage27', JSON.stringify(data));
     }
 
-    // yield put(busStopActions.setBusStopsAction(data));
     console.log("info", data);
     yield put(busStopActions.setLoadingBusStops(false));
-    // yield put(busStopActions.setSuccessBusStops(true));
+    yield put(busStopActions.setSuccessGetBusStop(true));
   } catch (err) {
     console.log(err);
     yield put(busStopActions.setGetBusStopError(err));
     yield put(busStopActions.setLoadingBusStops(false));
-    // yield put(busStopActions.setSuccessBusStops(false));
+    yield put(busStopActions.setSuccessGetBusStop(false));
   }
 }
 
