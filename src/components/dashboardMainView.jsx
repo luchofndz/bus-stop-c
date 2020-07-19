@@ -14,11 +14,12 @@ import desktopSecondaryImage from '../assests/images/childrenBusStopDesktop.jpg'
 
 export default function DashboardMainView(props) {
   const { 
-    loading,
     getBusStopsSaga, 
     busStops, 
     isLoadingBusStops,
-    setUserDonation
+    setUserDonation,
+    donationSuccess,
+    donationError
   } = props;
   const [busStopSelected, selectBusStop] = useState('');
 
@@ -31,11 +32,7 @@ export default function DashboardMainView(props) {
   }, []);
 
   console.log("props", props);
-  console.log("state1", busStopSelected);
-  if (busStops){
-    console.log("alf", busStops.busStops[2].amount);
-  }
-  
+  console.log("state1", busStopSelected);  
 
   return (
     <div>
@@ -153,7 +150,12 @@ export default function DashboardMainView(props) {
                     : <Dropdown.Item key={"0"} eventKey="1"> Not available yet </Dropdown.Item>
                   }
                 </DropdownButton>
-                <PaymentView busStop={busStopSelected} userDonationFunction={setUserDonation}/>
+                <PaymentView 
+                  busStop={busStopSelected} 
+                  userDonationFunction={setUserDonation}
+                  donationSuccess={donationSuccess}
+                  donationError={donationError}
+                />
               </div>
             }
           </div>

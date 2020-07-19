@@ -1,12 +1,13 @@
 import React, { useState, createRef } from 'react';
 import StripeCheckout from "react-stripe-checkout";
 import '../styles/paymentViewStyles.css';
+import Toast from './toast/toastView'
 import {
   Form
 } from 'react-bootstrap';
 
 export default function PaymentView(props) {
-  const { busStop = 0, userDonationFunction } = props;
+  const { busStop = 0, userDonationFunction, donationSuccess, donationError = '' } = props;
   const textInput = createRef();
   const [selectedData, setSelectedData] = useState({
     name: "Bus Stop Donation",
@@ -25,12 +26,6 @@ export default function PaymentView(props) {
     };
     console.log("obje", object);
     userDonationFunction(object);
-
-    // if (status === "success") {
-    //   toast("Success! Check email for details", { type: "success" });
-    // } else {
-    //   toast("Something went wrong", { type: "error" });
-    // }
   }
 
   const handleChangeInput = () => {
@@ -58,6 +53,16 @@ export default function PaymentView(props) {
         description={selectedData.description}
         billingAddress
         currency="USD"
+      />
+      <Toast 
+        title={donationSuccess && "Donation successful"} 
+        message={donationSuccess && "Your payment was proessed successfully"}
+        showByPros={donationSuccess}
+      />
+      <Toast 
+        title={donationError !== null && "something went wrong"} 
+        message={donationError !== null && donationError}
+        showByPros={donationError !== null ? true : false}
       />
     </div>
   );
