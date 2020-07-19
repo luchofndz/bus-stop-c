@@ -13,12 +13,17 @@ import desktopPrimaryImage from '../assests/images/busStopMainDesktop.jpg';
 import desktopSecondaryImage from '../assests/images/childrenBusStopDesktop.jpg';
 
 export default function DashboardMainView(props) {
-  const { loading, setLoading, getBusStopsSaga, busStops, isLoadingBusStops } = props;
+  const { 
+    loading, 
+    setLoading, 
+    getBusStopsSaga, 
+    busStops, 
+    isLoadingBusStops,
+    setUserDonation
+  } = props;
   const [busStopSelected, selectBusStop] = useState('');
 
-  const handleChange = (event) => {
-    const value = event.target.value;
-    console.log("val", event);
+  const handleBusStopSelection = (value) => {
     selectBusStop(value);
   };
 
@@ -134,7 +139,7 @@ export default function DashboardMainView(props) {
                   id={'dropdown-variants-Info'}
                   variant={'info'}
                   title={'Bus Stop'}
-                  onClik={() => handleChange()}
+                  onSelect={handleBusStopSelection}
                 >
                   {busStops ?
                     busStops.busStops.map((item, index) => {
@@ -145,7 +150,7 @@ export default function DashboardMainView(props) {
                     : <Dropdown.Item eventKey="1"> Not available yet </Dropdown.Item>
                   }
                 </DropdownButton>
-                <PaymentView />
+                <PaymentView busStop={busStopSelected} userDonationFunction={setUserDonation}/>
               </div>
             }
           </div>
