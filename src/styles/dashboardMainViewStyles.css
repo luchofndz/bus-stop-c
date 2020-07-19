@@ -56,6 +56,7 @@
   .body__desktopImage {
     height: 100%;
     width: 100%;
+    max-height: 636px;
   }
   .body__donate-absolute-container {
     position: absolute;

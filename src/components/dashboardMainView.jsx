@@ -28,11 +28,6 @@ export default function DashboardMainView(props) {
   };
 
   useEffect( () => {
-    // if (localStorage.getItem(localStorageKey)) {
-
-    // } else {
-    //   getBusStopsSaga();
-    // }
     getBusStopsSaga();
   }, []);
 
@@ -153,10 +148,10 @@ export default function DashboardMainView(props) {
                   {busStops ?
                     busStops.busStops.map((item, index) => {
                       return (
-                      <Dropdown.Item eventKey={`${index}`}>Bus Stop {item.name.toUpperCase()}</Dropdown.Item>
+                      <Dropdown.Item key={`${index}`} eventKey={`${index}`}>Bus Stop {item.name.toUpperCase()}</Dropdown.Item>
                       );
                     })
-                    : <Dropdown.Item eventKey="1"> Not available yet </Dropdown.Item>
+                    : <Dropdown.Item key={"0"} eventKey="1"> Not available yet </Dropdown.Item>
                   }
                 </DropdownButton>
                 <PaymentView busStop={busStopSelected} userDonationFunction={setUserDonation}/>
