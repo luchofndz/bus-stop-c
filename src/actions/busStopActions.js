@@ -6,10 +6,12 @@ export const getAllBusStopsAction = () => ({
 });
 
 // Redux Actions
-export const setBusStopsAction = () => ({
+export const setBusStopsAction = (value) => ({
     type: type.SET_BUS_STOPS,
+    value
 });
 
-export const setLoadingBusStops = () => ({
+export const setLoadingBusStops = (value) => ({
     type: type.SET_LOADING_BUS_STOPS,
+    value
 });

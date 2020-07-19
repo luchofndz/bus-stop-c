@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import PaymentView from './paymentView' 
+import PaymentView from './paymentView'
 import { CheckCircle, Smile, ThumbsUp, Feather, CheckSquare } from 'react-feather';
-import { 
-  Dropdown, 
-  DropdownButton, 
-  ButtonGroup, 
+import {
+  Dropdown,
+  DropdownButton,
+  ButtonGroup,
   ProgressBar,
   Image
 } from 'react-bootstrap';
@@ -22,27 +22,10 @@ export default function DashboardMainView(props) {
 
   useEffect( () => {
     getBusStopsSaga();
-  })
+  }, []);
 
-  console.log("state", isLoadingBusStops);
-  console.log("asasa", busStops);
+  console.log("props", props);
 
-  const renderProgressBars = () => {
-    if (busStops) {
-      const obj = JSON.parse(busStops);
-      console.log("sd", obj);
-
-      busStops.busStops.map((item, index) => {
-        return (
-          <div>
-            <ProgressBar striped variant="success" now={40} />
-              <p className="text-uppercase">Bus Stop {item.name}</p>
-          </div>
-        );
-      })
-    }
-  }
-  
   return (
     <div>
       <nav className="site-header sticky-top py-1">
@@ -81,21 +64,28 @@ export default function DashboardMainView(props) {
               <div className="d-flex justify-content-center align-items-center">
                 <h2 className="body__title">How your money helps</h2>
                 <Smile size={54} color='green' />
-              </div> 
+              </div>
               <p className="lead">As a not-for-profit, we rely on the kind donations we receive from our supporters, all of which are put towards supporting the bus stops for users. All donations are tax deductible.</p>
-              {renderProgressBars()}
+              <p className="text-uppercase">Bus Stops</p>
               <div>
-
-                <ProgressBar striped variant="success" now={40} />
-                <p className="text-uppercase">Bus Stop A</p>
-                <ProgressBar striped variant="success" now={70} />
-                <p className="text-uppercase">Bus Stop B</p>
-                <ProgressBar striped variant="success" now={40} />
-                <p className="text-uppercase">Bus Stop C</p>
-                <ProgressBar striped variant="success" now={20} />
-                <p className="text-uppercase">Bus Stop D</p>
-                <ProgressBar striped variant="success" now={80} />
-                <p className="text-uppercase">Bus Stop E</p>
+                {busStops && 
+                  busStops.busStops.map((item, index) => {
+                    const percentil = Math.round((item.amount*100) / 700);
+                    return (
+                      <div className="body__progressbar-container">
+                        <ProgressBar 
+                          striped 
+                          variant="success" 
+                          now={percentil} 
+                          min={0} 
+                          max={100} 
+                          label={`${percentil}%`}
+                        />
+                        <p className="text-uppercase">{item.name}</p>
+                      </div>
+                    );
+                  })
+                }
               </div>
             </div>
           </div>
@@ -128,17 +118,15 @@ export default function DashboardMainView(props) {
               <Dropdown.Item eventKey="1">Bus Stop A</Dropdown.Item>
               <Dropdown.Item eventKey="2">Bus Stop B</Dropdown.Item>
               <Dropdown.Item eventKey="3" active>
-                Bus Stop C 
+                Bus Stop C
               </Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item eventKey="4">Bus Stop D</Dropdown.Item>
             </DropdownButton>
-            <PaymentView />   
+            <PaymentView />
           </div>
         </div>
       </div>
-
-      
 
       <footer className="container py-5">
         <div className="row">
