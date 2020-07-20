@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PaymentView from './paymentView'
-import { CheckCircle, Smile, ThumbsUp, Feather, CheckSquare } from 'react-feather';
+import { 
+  CheckCircle, 
+  Smile, 
+  ThumbsUp, 
+  Feather, 
+  CheckSquare
+} from 'react-feather';
 import {
   Dropdown,
   DropdownButton,
@@ -11,16 +17,19 @@ import {
 import '../styles/dashboardMainViewStyles.css';
 import desktopPrimaryImage from '../assests/images/busStopMainDesktop.jpg';
 import desktopSecondaryImage from '../assests/images/childrenBusStopDesktop.jpg';
+import useWindowSize from './utils/windowSize';
 
 export default function DashboardMainView(props) {
   const { 
-    loading,
     getBusStopsSaga, 
     busStops, 
     isLoadingBusStops,
-    setUserDonation
+    setUserDonation,
+    donationSuccess,
+    donationError
   } = props;
   const [busStopSelected, selectBusStop] = useState('');
+  const size = useWindowSize();
 
   const handleBusStopSelection = (value) => {
     selectBusStop(value);
@@ -31,11 +40,8 @@ export default function DashboardMainView(props) {
   }, []);
 
   console.log("props", props);
-  console.log("state1", busStopSelected);
-  if (busStops){
-    console.log("alf", busStops.busStops[2].amount);
-  }
-  
+  console.log("state1", busStopSelected);  
+  console.log("win size", size.width);
 
   return (
     <div>
@@ -58,7 +64,7 @@ export default function DashboardMainView(props) {
         <Image className="body__desktopImage" src={desktopSecondaryImage} />
         <div className="body__donate-absolute-container">
           <h1 className="display-4 font-weight-bold">Donate</h1>
-          <CheckCircle size={100} color='green' />
+          <CheckCircle size={size.width < 775 ? 50 : 100} color='green' />
         </div>
       </div>
 
@@ -74,7 +80,7 @@ export default function DashboardMainView(props) {
             <div className="my-3 p-3">
               <div className="d-flex justify-content-center align-items-center">
                 <h2 className="body__title">How your money helps</h2>
-                <Smile size={54} color='green' />
+                <Smile size={size.width < 775 ? 74 : 54} color='green' />
               </div>
               <p className="lead">As a non-profit organization, we rely on the kind donations we receive from 
                 our supporters, all of which are put towards supporting the bus stops for users. 
@@ -115,16 +121,16 @@ export default function DashboardMainView(props) {
         <Image className="body__desktopImage" src={desktopPrimaryImage} />
         <div className="body__donate-absolute-container-centered">
           <h1 className="display-4 font-weight-bold">Donate</h1>
-          <CheckCircle size={100} color='green' />
+          <CheckCircle size={size.width < 775 ? 50 : 100} color='green' />
         </div>
       </div>
 
-      <div className="d-md-flex flex-md-equal w-100">
-        <div className="bg-secondary p-6 text-center text-white overflow-hidden">
+      <div className="d-md-flex flex-md-equal w-100 bg-secondary dashboard__payment-container">
+        <div className="p-6 text-center text-white overflow-hidden">
           <div className="my-3 py-3">
             <div className="d-flex justify-content-center align-items-center">
               <h2 className="body__title">Taking action, changing lives.</h2>
-              <CheckSquare size={70} color='green' />
+              <CheckSquare size={size.width < 775 ? 60 : 70} color='green' />
             </div>
             <p className="lead">We value all donations big and small! Every cent donated helps us to change lives. Think about supporting Bus Stop!</p>
             <p className="lead">Select a bus stop to which you would like to donate</p>
@@ -153,7 +159,12 @@ export default function DashboardMainView(props) {
                     : <Dropdown.Item key={"0"} eventKey="1"> Not available yet </Dropdown.Item>
                   }
                 </DropdownButton>
-                <PaymentView busStop={busStopSelected} userDonationFunction={setUserDonation}/>
+                <PaymentView 
+                  busStop={busStopSelected} 
+                  userDonationFunction={setUserDonation}
+                  donationSuccess={donationSuccess}
+                  donationError={donationError}
+                />
               </div>
             }
           </div>
@@ -163,7 +174,7 @@ export default function DashboardMainView(props) {
       <footer className="container py-5">
         <div className="row">
           <div className="col-12 col-md">
-          <ThumbsUp size={54} color='blue' />
+          <ThumbsUp size={size.width < 775 ? 20 : 54} color='blue' className="mb-3" />
           </div>
           <div className="col-6 col-md">
             <h5>Features</h5>

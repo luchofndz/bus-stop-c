@@ -1,9 +1,28 @@
 .payment__form-container {
     display: flex;
     justify-content: center;
-    margin-right: auto;
+    margin-right: 20px;
     margin-left: auto;
-    width: 25%;
+    width: 40%;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+.payment___amount-and-pay-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media only screen and (max-width: 700px) {
+    .payment__form-container {
+        width: 60%;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .payment___amount-and-pay-container {
+        display: block;
+    }
+    .payment__form-container {
+        margin-right: auto;
+        width: 90%;
+    }
 }
