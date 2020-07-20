@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
 import {
-    Row, Col, Toast, Button
+    Row, Col, Toast
 } from 'react-bootstrap';
 
 export default function ToastView(props) {
-    const { message, title, showByPros } = props;
-    const [show, setShow] = useState(false);
+    const { message, title, showByPros = false } = props;
+    const [show, setShow] = useState(showByPros);
   
     return (
-      <Row>
+      <Row className="mr-auto ml-auto">
         <Col>
-          <Toast onClose={() => setShow(false)} show={showByPros ? showByPros : show} delay={3000} autohide>
+          <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
             <Toast.Header>
               <img
                 src="holder.js/20x20?text=%20"
@@ -19,7 +19,7 @@ export default function ToastView(props) {
               />
               <strong className="mr-auto">{title ? title : ''}</strong>
             </Toast.Header>
-            <Toast.Body>{message ? message : ''}</Toast.Body>
+            <Toast.Body className="text-secondary">{message ? message : ''}</Toast.Body>
           </Toast>
         </Col>
       </Row>
