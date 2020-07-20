@@ -115,4 +115,27 @@
     font-size: 30px;
     text-align: center;
   }
-  
+  @media only screen and (max-width: 900px) {
+    .body__money-box-conatiner {
+      padding: 40px;
+    }
+    .dashboard__payment-container {
+      padding: 40px;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    .body__money-box-conatiner {
+      padding: 20px;
+    }
+    .dashboard__payment-container {
+      padding: 20px;
+    }
+  }
+  @media only screen and (max-width: 400px) {
+    .body__money-box-conatiner {
+      padding: 10px;
+    }
+    .dashboard__payment-container {
+      padding: 10px;
+    }
+  }
