@@ -16,7 +16,6 @@ export default function PaymentView(props) {
   });
 
   async function handleToken(token, addresses) {
-    console.log("a:", token, addresses);
     const object =  {
       email: token.email,
       amount: selectedData.price,
@@ -24,17 +23,14 @@ export default function PaymentView(props) {
       name: token.card.name,
       busStop: busStop
     };
-    console.log("obje", object);
     userDonationFunction(object);
   }
 
   const handleChangeInput = () => {
-    console.log("Input value: ", textInput.current.value);
     setSelectedData({
       ...selectedData,
       price: textInput.current.value
     });
-    console.log("handleChange:", selectedData);
   }
 
   return (

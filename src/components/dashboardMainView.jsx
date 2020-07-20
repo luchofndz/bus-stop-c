@@ -39,10 +39,6 @@ export default function DashboardMainView(props) {
     getBusStopsSaga();
   }, []);
 
-  console.log("props", props);
-  console.log("state1", busStopSelected);  
-  console.log("win size", size.width);
-
   return (
     <div>
       <nav className="site-header sticky-top py-1">
