@@ -39,21 +39,24 @@ export default function PaymentView(props) {
 
   return (
     <div>
-      <Form className="payment__form-container">
-        <Form.Control placeholder="Insert an amount"
-          ref={textInput}
-          onChange={handleChangeInput}
+      <div className="payment___amount-and-pay-container">
+        <Form className="payment__form-container">
+          <Form.Control placeholder="Insert an amount"
+            ref={textInput}
+            onChange={handleChangeInput}
+          />
+        </Form>
+        <StripeCheckout
+          className="mr-auto"
+          stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
+          token={handleToken}
+          amount={selectedData.price * 100}
+          name={selectedData.name}
+          description={selectedData.description}
+          billingAddress
+          currency="USD"
         />
-      </Form>
-      <StripeCheckout
-        stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
-        token={handleToken}
-        amount={selectedData.price * 100}
-        name={selectedData.name}
-        description={selectedData.description}
-        billingAddress
-        currency="USD"
-      />
+      </div>
       <Toast 
         title={donationSuccess && "Donation successful"} 
         message={donationSuccess && "Your payment was proessed successfully"}
