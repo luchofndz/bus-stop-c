@@ -21,11 +21,9 @@ function* getAllBusStop() {
       localStorage.setItem('busStopStorage27', JSON.stringify(data));
     }
 
-    console.log("info", data);
     yield put(busStopActions.setLoadingBusStops(false));
     yield put(busStopActions.setSuccessGetBusStop(true));
   } catch (err) {
-    console.log(err);
     yield put(busStopActions.setGetBusStopError(err));
     yield put(busStopActions.setLoadingBusStops(false));
     yield put(busStopActions.setSuccessGetBusStop(false));
@@ -41,7 +39,6 @@ function* setDonation(action) {
 
     let localData = localStorage.getItem('busStopStorage27');
     localData = JSON.parse(localData);
-    console.log("dat: ", localData);
 
     // Update local file
     const busStopIndex = action.value.busStop;

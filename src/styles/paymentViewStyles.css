@@ -25,4 +25,7 @@
         margin-right: auto;
         width: 90%;
     }
+    .dashboard__donate-text {
+        color: green;
+    }
 }

@@ -39,10 +39,6 @@ export default function DashboardMainView(props) {
     getBusStopsSaga();
   }, []);
 
-  console.log("props", props);
-  console.log("state1", busStopSelected);  
-  console.log("win size", size.width);
-
   return (
     <div>
       <nav className="site-header sticky-top py-1">
@@ -63,7 +59,7 @@ export default function DashboardMainView(props) {
       <div className="text-center">
         <Image className="body__desktopImage" src={desktopSecondaryImage} />
         <div className="body__donate-absolute-container">
-          <h1 className="display-4 font-weight-bold">Donate</h1>
+          <h1 className="display-4 font-weight-bold dashboard__donate-text">Donate</h1>
           <CheckCircle size={size.width < 775 ? 50 : 100} color='green' />
         </div>
       </div>
@@ -120,7 +116,7 @@ export default function DashboardMainView(props) {
       <div className="position-relative text-center">
         <Image className="body__desktopImage" src={desktopPrimaryImage} />
         <div className="body__donate-absolute-container-centered">
-          <h1 className="display-4 font-weight-bold">Donate</h1>
+          <h1 className="display-4 font-weight-bold dashboard__donate-text">Donate</h1>
           <CheckCircle size={size.width < 775 ? 50 : 100} color='green' />
         </div>
       </div>
