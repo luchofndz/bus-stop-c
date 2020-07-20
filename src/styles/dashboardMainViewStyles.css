@@ -46,17 +46,12 @@
     -ms-flex: 1;
     flex: 1;
   }
-  @media (min-width: 768px) {
-    .flex-md-equal > * {
-      -ms-flex: 1;
-      flex: 1;
-    }
-  }
   .overflow-hidden { overflow: hidden; }
   .body__desktopImage {
     height: 100%;
     width: 100%;
     max-height: 636px;
+    min-height: 220px;
   }
   .body__donate-absolute-container {
     position: absolute;
@@ -121,6 +116,12 @@
     }
     .dashboard__payment-container {
       padding: 40px;
+    }
+  }
+  @media (min-width: 768px) {
+    .flex-md-equal > * {
+      -ms-flex: 1;
+      flex: 1;
     }
   }
   @media only screen and (max-width: 500px) {
